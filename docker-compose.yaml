@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  monorepo:
+    build: .
+    container_name: monorepo
+    volumes:
+      - .:/app
+    ports:
+      - '3000:3000'
+      - '3010:3010'
+    networks:
+      - microservices
+    environment:
+      - MS_AUTH_PORT=${MS_AUTH_PORT}
+      - MS_SHORT_LINK_PORT=${MS_SHORT_LINK_PORT}
+networks:
+  microservices:
+    driver: bridge
